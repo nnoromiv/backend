@@ -8,13 +8,10 @@ load_dotenv()
 
 Base = declarative_base()
 
-DATABASE_URL = (
+engine = create_engine(
     f"postgresql+psycopg2://{os.getenv('POSTGRES_USER')}:{os.getenv('POSTGRES_PASSWORD')}"
-    f"@{os.getenv('POSTGRES_HOST')}/{os.getenv('POSTGRES_DB')}"
+    f"@/cloudsql/{os.getenv('POSTGRES_HOST')}/{os.getenv('POSTGRES_DB')}"
 )
-
-engine = create_engine(DATABASE_URL, connect_args={"sslmode": "disable"})  # Cloud SQL uses SSL by default if needed
-
 # Session factory
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
