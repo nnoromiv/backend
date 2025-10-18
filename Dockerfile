@@ -1,22 +1,34 @@
-# Base image
-FROM python:3.12.6
+# Use a Linux-compatible Python version
+FROM python:3.11-slim
 
 WORKDIR /app
 
-# Install Postgres client (for pg_isready)
-RUN apt-get update && apt-get install -y postgresql-client && rm -rf /var/lib/apt/lists/*
+# Install system dependencies for pythonnet and Postgres client
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    python3-dev \
+    libffi-dev \
+    postgresql-client \
+    && rm -rf /var/lib/apt/lists/*
 
 # Copy dependencies
 COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
-RUN pip install psycopg2-binary
 
-# Copy backend code and SQL
+# Remove Windows-only packages (pywin32, pypiwin32) before installing
+RUN sed -i '/pywin32/d' requirements.txt && sed -i '/pypiwin32/d' requirements.txt
+
+# Install Python dependencies
+RUN pip install --upgrade pip
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy backend code and SQL files
 COPY . .
 
 # Expose FastAPI port
 EXPOSE 8000
 
-# Set entrypoint
+# Make entrypoint executable
 RUN chmod +x entrypoint.sh
+
+# Set entrypoint
 ENTRYPOINT ["./entrypoint.sh"]
