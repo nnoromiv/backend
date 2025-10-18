@@ -17,7 +17,6 @@ weather_router = APIRouter(
 )
 
 @weather_router.get("/current", response_model=list[WeatherResponse])
-@cache(expire=300)
 def weather_current(db:Session = Depends(get_db)):
     return get_weather_current(db)
 

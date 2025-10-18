@@ -16,7 +16,6 @@ incident_router = APIRouter(
 )
 
 @incident_router.get("/current", response_model=list[IncidentResponse])
-@cache(expire=300)
 def incidents_current(db: Session = Depends(get_db)):
     return get_incidents_current(db)
 

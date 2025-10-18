@@ -7,9 +7,9 @@ from processors.extractors.incident_extractor import fetch_incidents
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
 
-def run_pipeline():
+def run_pipeline(destination: str | None = None):
     ORIGIN = os.getenv("ORIGIN", "London")
-    DESTINATION = os.getenv("DESTINATION", "Reading")
+    DESTINATION = destination or os.getenv("DESTINATION", "Reading")
 
     weather_result = fetch_weather(ORIGIN)
     weather_destination_result = fetch_weather(DESTINATION)

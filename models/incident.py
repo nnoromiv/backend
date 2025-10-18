@@ -14,4 +14,4 @@ class Incident(Base):
     location = Column(String)
     start_date = Column(DateTime)
     end_date = Column(DateTime)
-    timestamp = Column(DateTime, default=datetime.utcnow)
+    timestamp = Column(DateTime, default=datetime.now)

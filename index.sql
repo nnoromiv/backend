@@ -1,5 +1,5 @@
 -- Weather table
-CREATE TABLE weather (
+CREATE TABLE IF NOT EXISTS weather (
     id SERIAL PRIMARY KEY,
     city VARCHAR(100),
     temperature REAL,
@@ -7,13 +7,13 @@ CREATE TABLE weather (
     visibility INT,
     condition VARCHAR(50),
     wind_speed REAL,
-    timestamp TIMESTAMP,
+    timestamp TIMESTAMP
 );
-CREATE INDEX idx_weather_city ON weather(city);
-CREATE INDEX idx_weather_timestamp ON weather(timestamp);
+CREATE INDEX IF NOT EXISTS idx_weather_city ON weather(city);
+CREATE INDEX IF NOT EXISTS idx_weather_timestamp ON weather(timestamp);
 
 -- Traffic table
-CREATE TABLE traffic (
+CREATE TABLE IF NOT EXISTS traffic (
     id SERIAL PRIMARY KEY,
     origin VARCHAR(100),
     destination VARCHAR(100),
@@ -23,29 +23,13 @@ CREATE TABLE traffic (
     congestion_percentage REAL,
     timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
-
-CREATE INDEX idx_traffic_origin_destination_timestamp ON traffic(origin, destination, timestamp);
+CREATE INDEX IF NOT EXISTS idx_traffic_origin_destination_timestamp ON traffic(origin, destination, timestamp);
 
 -- TrafficSpeed table (child of traffic)
-CREATE TABLE traffic_speed (
+CREATE TABLE IF NOT EXISTS traffic_speed (
     id SERIAL PRIMARY KEY,
     traffic_id INT REFERENCES traffic(id) ON DELETE CASCADE,
     type VARCHAR(50),
     speed_kmh REAL,
     UNIQUE(traffic_id, type)
 );
-
--- Incident table
-CREATE TABLE incident (
-    id VARCHAR(100) PRIMARY KEY,
-    severity VARCHAR(50),
-    category VARCHAR(50),
-    sub_category VARCHAR(50),
-    current_update TEXT,
-    location VARCHAR(200),
-    start_date TIMESTAMP,
-    end_date TIMESTAMP,
-    timestamp TIMESTAMP
-);
-CREATE INDEX idx_incident_location ON incident(location);
-CREATE INDEX idx_incident_timestamp ON incident(timestamp);

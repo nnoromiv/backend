@@ -43,63 +43,12 @@ def validate_data(weather, weather_destination, traffic, incidents):
     return w, wD, t, valid_incidents
 
 def store_data(weather, weather_destination, traffic, incidents):
-    """
-    Store Weather, Traffic, TrafficSpeed, and Incidents into PostgreSQL.
-    Handles duplicate weather (city) and traffic (origin-destination) by updating timestamp and latest data.
-    """
     engine = db_connection()
 
     try:
-        with engine.begin() as conn:
-            # ---- WEATHER (Origin) ----
-            conn.execute(text("""
-                INSERT INTO weather 
-                (city, temperature, humidity, visibility, condition, wind_speed, timestamp)
-                VALUES (:city, :temperature, :humidity, :visibility, :condition, :wind_speed, :timestamp)
-            """),
-            vars(weather))
+        with engine.begin() as conn:  # automatic transaction
             
-            # ---- WEATHER (Destination) ----
-            conn.execute(text("""
-                INSERT INTO weather (city, temperature, humidity, visibility, condition, wind_speed, timestamp)
-                VALUES (:city, :temperature, :humidity, :visibility, :condition, :wind_speed, :timestamp)
-            """), vars(weather_destination))
-
-            # ---- TRAFFIC ----
-            result = conn.execute(text("""
-                INSERT INTO traffic (origin, destination, journey_time_min, journey_time_with_traffic_min,
-                                    delay_min, congestion_percentage, timestamp)
-                VALUES (:origin, :destination, :journey_time_min, :journey_time_with_traffic_min,
-                        :delay_min, :congestion_percentage, :timestamp)
-                RETURNING id;
-            """), vars(traffic))
-            
-            traffic_row = result.fetchone()
-            traffic_id = traffic_row[0] if traffic_row else None
-            
-            conn.commit()
-                
-            # ---- TRAFFIC SPEED ----
-            if traffic.traffic_speeds and traffic_id:
-                values = [(traffic_id, ts.type, ts.speed_kmh) for ts in traffic.traffic_speeds]
-
-                # execute_values needs a raw connection
-                raw_conn = engine.raw_connection()
-                try:
-                    with raw_conn.cursor() as cur:
-                        execute_values(
-                            cur,
-                            """
-                            INSERT INTO traffic_speed (traffic_id, type, speed_kmh)
-                            VALUES %s
-                            """,
-                            values
-                        )
-                    raw_conn.commit()
-                finally:
-                    raw_conn.close()
-
-             # ---- INCIDENTS ----
+            # ---- INCIDENTS ----
             for inc in incidents:
                 conn.execute(text("""
                     INSERT INTO incident (id, severity, category, sub_category, current_update, location,
@@ -119,20 +68,52 @@ def store_data(weather, weather_destination, traffic, incidents):
                     "id": inc.id,
                     "severity": inc.severity,
                     "category": inc.category,
-                    "sub_category": inc.subCategory,
-                    "current_update": inc.currentUpdate,
+                    "sub_category": inc.sub_category,
+                    "current_update": inc.current_update,
                     "location": inc.location,
                     "start_date": inc.start_date,
                     "end_date": inc.end_date,
                     "timestamp": inc.timestamp
                 })
 
+            # ---- WEATHER ----
+            conn.execute(
+                text("""INSERT INTO weather (city, temperature, humidity, visibility, condition, wind_speed, timestamp)
+                        VALUES (:city, :temperature, :humidity, :visibility, :condition, :wind_speed, :timestamp)"""),
+                vars(weather)
+            )
+            conn.execute(
+                text("""INSERT INTO weather (city, temperature, humidity, visibility, condition, wind_speed, timestamp)
+                        VALUES (:city, :temperature, :humidity, :visibility, :condition, :wind_speed, :timestamp)"""),
+                vars(weather_destination)
+            )
+
+            # ---- TRAFFIC ----
+            result = conn.execute(
+                text("""INSERT INTO traffic (origin, destination, journey_time_min, journey_time_with_traffic_min,
+                                             delay_min, congestion_percentage, timestamp)
+                        VALUES (:origin, :destination, :journey_time_min, :journey_time_with_traffic_min,
+                                :delay_min, :congestion_percentage, :timestamp)
+                        RETURNING id"""),
+                vars(traffic)
+            )
+            traffic_id = result.fetchone()[0] if result.rowcount > 0 else None
+
+            # ---- TRAFFIC SPEED ----
+            if traffic.traffic_speeds and traffic_id:
+                values = [(traffic_id, ts.type, ts.speed_kmh) for ts in traffic.traffic_speeds]
+                conn.execute(
+                    text("""
+                        INSERT INTO traffic_speed (traffic_id, type, speed_kmh)
+                        VALUES (:traffic_id, :type, :speed_kmh)
+                    """),
+                    [{"traffic_id": t_id, "type": t_type, "speed_kmh": t_speed} for t_id, t_type, t_speed in values]
+                )
+
         logging.info("All data stored successfully in PostgreSQL.")
 
     except Exception as e:
         logging.error(f"Error storing data: {e}")
-        if conn:
-            conn.rollback()
 
     finally:
         if engine:

@@ -17,7 +17,6 @@ Base.metadata.create_all(
 traffic_router = APIRouter(prefix="/api/traffic", tags=["Traffic"])
 
 @traffic_router.get("/current", response_model=list[TrafficResponse])
-@cache(expire=300)
 def traffic_current(db: Session = Depends(get_db)):
     return get_traffic_current(db)
 

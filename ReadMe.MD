@@ -70,26 +70,36 @@ This FastAPI backend serves traffic, weather, and incident data collected from A
 1. Set PostgreSQL environment variables:
 
 ```bash
-POSTGRES_HOST, POSTGRES_PORT, POSTGRES_DB, POSTGRES_USER, POSTGRES_PASSWORD
-API_KEY  # OpenWeatherMap
+    POSTGRES_HOST, 
+    POSTGRES_PORT, 
+    POSTGRES_DB, 
+    POSTGRES_USER, 
+    POSTGRES_PASSWORD
+    API_KEY  # OpenWeatherMap
 ```
 
 Install dependencies:
 
 ```bash
-pip install -r requirements.txt
+    pip install -r requirements.txt
 ```
 
 Run FastAPI:
 
 ```bash
-fastapi dev main.py
+    fastapi dev main.py
 ```
 
 Visit **Swagger UI** for interactive API docs:
 
 ```bash
-http://127.0.0.1:8000/docs
+    http://127.0.0.1:8000/docs
+```
+
+Ensure `entrypoint.sh` is executable
+
+```bash
+chmod +x backend/entrypoint.sh
 ```
 
 ---
@@ -106,6 +116,6 @@ http://127.0.0.1:8000/docs
 
 ## **Notes**
 
-* Anti-bot scraping (Google Maps/Waze) was unreliable; APIs are used.
+* Anti-bot scraping (Google Maps/Waze) was unreliable; Direction APIs are used.
 * Weather ↔ traffic correlation is precomputed for fast response.
 * FastAPI cache is recommended for expensive endpoints (e.g., `/summary`).

@@ -3,6 +3,7 @@ from datetime import datetime
 from typing import Dict
 
 class IncidentSchema(BaseModel):
+    id: str = Field(..., description="Incident Id")
     severity: str = Field(..., description="Severity level of the incident")
     category: str = Field(..., description="Category of the incident")
     sub_category: str = Field(..., description="Sub-category of the incident")
