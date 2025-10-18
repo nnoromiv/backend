@@ -1,121 +1,130 @@
-# **UTIS Traffic & Weather API**
+# UTIS Backend: Traffic, Weather & Incident API
 
-## **Overview**
+## Project Overview
 
-This FastAPI backend serves traffic, weather, and incident data collected from APIs and stored in PostgreSQL. It provides processed trends, summaries, correlations, and visual data for integration with dashboards or other clients.
+The UTIS backend provides **traffic, weather, and incident data** for London via a REST API, collected through an ETL pipeline and stored in PostgreSQL.  
 
----
+**Key Features:**
 
-## **API Endpoints**
+- Real-time data collection from OpenWeatherMap & TfL API  
+- ETL pipeline with validation, trend analysis, and correlation computation  
+- REST API endpoints for current, historical, summary, and visualization data  
+- PostgreSQL storage with upserts to prevent duplicate records  
+- Sample JSON exports and system health monitoring endpoints  
 
-### **Weather**
+**Technologies Used:**
 
-| Endpoint               | Method | Description                                 |
-| ---------------------- | ------ | ------------------------------------------- |
-| `/api/weather/current` | GET    | Latest weather for all cities               |
-| `/api/weather/{city}`  | GET    | Latest weather for a specific city          |
-| `/api/weather/history` | GET    | Historical weather (paginated)              |
-| `/api/weather/summary` | GET    | Weather summary: averages, latest condition |
-| `/api/weather/refresh` | POST   | Fetch new weather data from OpenWeatherMap  |
-
-### **Traffic**
-
-| Endpoint                              | Method | Description                         |
-| ------------------------------------- | ------ | ----------------------------------- |
-| `/api/traffic/current`                | GET    | Latest traffic for all routes       |
-| `/api/traffic/{origin}/{destination}` | GET    | Traffic for a specific route        |
-| `/api/traffic/history`                | GET    | Historical traffic data (paginated) |
-| `/api/traffic/summary`                | GET    | Traffic summary: averages, counts   |
-| `/api/traffic/refresh`                | POST   | Fetch new traffic data from TfL API |
-
-### **Incidents**
-
-| Endpoint                 | Method | Description                                 |
-| ------------------------ | ------ | ------------------------------------------- |
-| `/api/incidents/current` | GET    | Active incidents                            |
-| `/api/incidents/{id}`    | GET    | Detailed info for an incident               |
-| `/api/incidents/summary` | GET    | Aggregated counts and severity distribution |
-
-### **Summary & Correlation**
-
-| Endpoint                       | Method | Description                                 |
-| ------------------------------ | ------ | ------------------------------------------- |
-| `/api/summary`                 | GET    | Combined weather, traffic, incident summary |
-| `/api/summary/weather-traffic` | GET    | Weather–traffic correlation matrix          |
-| `/api/summary/overview`        | GET    | Top-level indicators: counts, averages      |
-
-### **Visualizations**
-
-| Endpoint                          | Description                     | Returns                         |
-| --------------------------------- | ------------------------------- | ------------------------------- |
-| `/api/visuals/congestion-gauge`   | Overall congestion level        | `{ overall_congestion: 14.31 }` |
-| `/api/visuals/congestion-heatmap` | Origin-destination congestion % | GeoJSON / list                  |
-| `/api/visuals/traffic-trend`      | Time-series congestion/delay    | Line chart data                 |
-| `/api/visuals/weather-trend`      | Temperature/humidity trend      | Line chart data                 |
-| `/api/visuals/weather-impact`     | Weather ↔ traffic correlations  | Heatmap / scatter data          |
-
-### **System & Data**
-
-| Endpoint             | Description                       | Returns       |
-| -------------------- | --------------------------------- | ------------- |
-| `/api/data/sample`   | Latest 5 records from all tables  | JSON sample   |
-| `/api/data/export`   | Full dataset export               | Download JSON |
-| `/api/system/health` | DB connection + freshness check   | Status info   |
-| `/api/system/stats`  | Record counts & latest timestamps | Admin metrics |
+- Python 3.11, FastAPI, SQLAlchemy, Pydantic  
+- PostgreSQL (AWS RDS)  
+- Docker, Docker Compose  
+- Optional: Cloud Run / Cloud Build for deployment  
 
 ---
 
-## **Quick Start**
+## Setup Instructions
 
-1. Set PostgreSQL environment variables:
+### 1. Clone the repository
 
 ```bash
-    POSTGRES_HOST, 
-    POSTGRES_PORT, 
-    POSTGRES_DB, 
-    POSTGRES_USER, 
-    POSTGRES_PASSWORD
-    API_KEY  # OpenWeatherMap
+    git clone https://github.com/nnoromiv/backend.git
 ```
 
-Install dependencies:
+### 2. Install dependencies
 
 ```bash
     pip install -r requirements.txt
 ```
 
-Run FastAPI:
+### 3. Set Environment Variables
+
+Create a `.env` file:
 
 ```bash
-    fastapi dev main.py
+    POSTGRES_HOST=<your_postgres_host>
+    POSTGRES_PORT=5432
+    POSTGRES_DB=utis_db
+    POSTGRES_USER=<your_postgres_user>
+    POSTGRES_PASSWORD=<your_postgres_password>
+    API_KEY=<openweathermap_api_key>
 ```
 
-Visit **Swagger UI** for interactive API docs:
+### 4. Initialize the Database
+
+```bash
+    python init_db.py
+```
+
+### 5. Run FastAPI Server
+
+```bash
+    uvicorn main:app --reload --host 0.0.0.0 --port 8000
+```
+
+### 6. Test API Endpoints
+
+Open Swagger UI:
 
 ```bash
     http://127.0.0.1:8000/docs
 ```
 
-Ensure `entrypoint.sh` is executable
+**Key endpoints:**
+
+- `/api/weather/current` – Latest weather for all cities
+- `/api/traffic/current` – Latest traffic for all routes
+- `/api/incidents/current` – Active incidents
+- `/api/summary/weather-traffic` – Weather ↔ traffic correlation
+- `/api/data/sample` – Latest 5 records from all tables
+- `/api/system/health` – Database connection & freshness check
+
+### 7. Optional Docker Deployment
 
 ```bash
-chmod +x backend/entrypoint.sh
+    docker build -t utis-backend .
+    docker run -p 8000:8000 --env-file .env utis-backend
 ```
 
 ---
 
-## **Features**
+## Architecture Decisions
 
-* ✅ Upsert storage with `ON CONFLICT` to prevent duplicates
-* ✅ Trends, averages, and correlations for weather & traffic
-* ✅ Historical and current data retrieval with pagination
-* ✅ Optional visual endpoints for dashboards
-* ✅ Sample JSON and full dataset export
+- **FastAPI:** Chosen for high performance, automatic OpenAPI docs, and type-safe request/response validation.
+- **PostgreSQL:** Reliable relational database with indexing and upserts for ETL data integrity.
+- **SQLAlchemy + Pydantic:** Clear ORM mapping and schema validation for pipeline data.
+- **ETL Pipeline:** Extract → Validate → Transform → Load, ensuring accurate trends and correlations.
+- **REST API Design:** Separate endpoints for current, historical, summary, and visual data to support dashboards and external clients.
+- **Dockerized Deployment:** Ensures reproducibility, consistent environments, and cloud readiness.
 
 ---
 
-## **Notes**
+## Challenges Faced & Solutions
 
-* Anti-bot scraping (Google Maps/Waze) was unreliable; Direction APIs are used.
-* Weather ↔ traffic correlation is precomputed for fast response.
-* FastAPI cache is recommended for expensive endpoints (e.g., `/summary`).
+| Challenge                                      | Solution                                                                  |
+| ---------------------------------------------- | ------------------------------------------------------------------------- |
+| Anti-bot scraping from Google Maps/Waze        | Switched to official TfL API                                              |
+| Duplicate or inconsistent records              | Implemented Pydantic validation & PostgreSQL upserts                      |
+| Database connection errors in cloud deployment | Configured backend to use public AWS RDS endpoint & environment variables |
+| Container startup issues on Cloud Run          | Ensured containers listen on `$PORT` and removed OS-specific dependencies |
+| Expensive queries for summaries                | Optional caching and optimized SQL queries                                |
+
+---
+
+## Example API Screenshots
+
+**Swagger UI Overview**
+![Swagger UI](screenshots/swagger_ui.png)
+
+**Weather Endpoint**
+![Weather](screenshots/weather.png)
+
+**Traffic Endpoint**
+![Traffic](screenshots/traffic.png)
+
+**Incidents & Other Endpoint**
+![Incidents](screenshots/incidents.png)
+
+---
+
+## License
+
+MIT License © 2025 Nnorom Christian
