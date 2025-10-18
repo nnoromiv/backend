@@ -1,0 +1,192 @@
+{
+  "$type": "Tfl.Api.Presentation.Entities.RoadDisruption, Tfl.Api.Presentation.Entities",
+  "id": "TIMS-212894",
+  "url": "/Road/All/Disruption/TIMS-212894",
+  "point": "[-0.015111,51.473218]",
+  "severity": "Serious",
+  "ordinal": 1,
+  "category": "Works",
+  "subCategory": "TfL works",
+  "comments": "[A2] Blackheath Hill (All approaches) between [A2211] Greenwich South Street and [A2211] Lewisham Road - Various lane closures and temporary traffic signals are in operation to facilitate signal, bollards, paving, new kerb, lighting TfL collaborative works. Please note - Lewisham Road can also not be entered from eastbound A2 due to a temporary banned right-turn. ",
+  "currentUpdate": "Traffic is slow moving on all approaches to the works. Eastbound traffic is queuing back to Greenwich High Road. Westbound traffic is reportedly queuing back to Prince Charles Road. Expect delays.",
+  "currentUpdateDateTime": "2025-10-15T17:16:52Z",
+  "corridorIds": ["a2"],
+  "startDateTime": "2025-08-04T07:00:00Z",
+  "endDateTime": "2025-10-24T16:00:00Z",
+  "lastModifiedTime": "2025-10-15T17:16:53Z",
+  "levelOfInterest": "High",
+  "location": "[A2] BLACKHEATH HILL (SE10 ) (Greenwich,Lewisham)",
+  "status": "Active",
+  "geography": {
+    "type": "Point",
+    "coordinates": [-0.015111, 51.473218],
+    "crs": { "type": "name", "properties": { "name": "EPSG:4326" } }
+  },
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+      [
+        [-0.0162147867, 51.4722606911],
+        [-0.0160707138, 51.471873296],
+        [-0.0154100963, 51.4710573388],
+        [-0.015148965, 51.4708964681],
+        [-0.0148088063, 51.4708370548],
+        [-0.0150266201, 51.4706282078],
+        [-0.0150579596, 51.4704977852],
+        [-0.0150273288, 51.4703672969],
+        [-0.0147255769, 51.4698784687],
+        [-0.0144827143, 51.4696999193],
+        [-0.0144203307, 51.4695133207],
+        [-0.013790069, 51.4687479226],
+        [-0.0136069388, 51.4686150107],
+        [-0.0133563111, 51.4685359859],
+        [-0.0130763413, 51.4685228788],
+        [-0.0128096517, 51.4685776848],
+        [-0.0126192805, 51.4686750259],
+        [-0.0124925433, 51.4688067327],
+        [-0.0124460326, 51.4689353768],
+        [-0.0124698576, 51.4690883172],
+        [-0.0131448201, 51.469926254],
+        [-0.0133552175, 51.4700666744],
+        [-0.013402766, 51.4702309317],
+        [-0.0137393839, 51.4707460488],
+        [-0.0140137439, 51.4708980891],
+        [-0.0143204091, 51.4709462693],
+        [-0.0141169762, 51.471128698],
+        [-0.0140782043, 51.4713484351],
+        [-0.0141493464, 51.4714898454],
+        [-0.0147674568, 51.4722788632],
+        [-0.0147260805, 51.4725501467],
+        [-0.0145409204, 51.4730810868],
+        [-0.0146257167, 51.4732707639],
+        [-0.0148322334, 51.4734195881],
+        [-0.0150863339, 51.4734941974],
+        [-0.0153668122, 51.4735024004],
+        [-0.0156309663, 51.4734429482],
+        [-0.0158385799, 51.4733248922],
+        [-0.016035751, 51.4730807119],
+        [-0.0162147867, 51.4722606911]
+      ]
+    ],
+    "crs": { "type": "name", "properties": { "name": "EPSG:4326" } }
+  },
+  "streets": [
+    {
+      "$type": "Tfl.Api.Presentation.Entities.Street, Tfl.Api.Presentation.Entities",
+      "name": "[A2211] LEWISHAM ROAD (SE10 ,SE13 )",
+      "closure": "Open",
+      "directions": "Both directions",
+      "segments": [
+        {
+          "$type": "Tfl.Api.Presentation.Entities.StreetSegment, Tfl.Api.Presentation.Entities",
+          "toid": "0",
+          "lineString": "[[-0.014684,51.471107],[-0.014613,51.470988]]",
+          "sourceSystemId": 0
+        },
+        {
+          "$type": "Tfl.Api.Presentation.Entities.StreetSegment, Tfl.Api.Presentation.Entities",
+          "toid": "0",
+          "lineString": "[[-0.01449,51.47076],[-0.014424,51.470644]]",
+          "sourceSystemId": 0
+        },
+        {
+          "$type": "Tfl.Api.Presentation.Entities.StreetSegment, Tfl.Api.Presentation.Entities",
+          "toid": "0",
+          "lineString": "[[-0.015158,51.471743],[-0.015491,51.472379]]",
+          "sourceSystemId": 0
+        },
+        {
+          "$type": "Tfl.Api.Presentation.Entities.StreetSegment, Tfl.Api.Presentation.Entities",
+          "toid": "0",
+          "lineString": "[[-0.014791,51.471286],[-0.014739,51.4712]]",
+          "sourceSystemId": 0
+        },
+        {
+          "$type": "Tfl.Api.Presentation.Entities.StreetSegment, Tfl.Api.Presentation.Entities",
+          "toid": "0",
+          "lineString": "[[-0.015437,51.47262],[-0.015305,51.473005]]",
+          "sourceSystemId": 0
+        },
+        {
+          "$type": "Tfl.Api.Presentation.Entities.StreetSegment, Tfl.Api.Presentation.Entities",
+          "toid": "0",
+          "lineString": "[[-0.014338,51.470497],[-0.014075,51.47007]]",
+          "sourceSystemId": 0
+        },
+        {
+          "$type": "Tfl.Api.Presentation.Entities.StreetSegment, Tfl.Api.Presentation.Entities",
+          "toid": "0",
+          "lineString": "[[-0.013763,51.469697],[-0.013597,51.469502]]",
+          "sourceSystemId": 0
+        },
+        {
+          "$type": "Tfl.Api.Presentation.Entities.StreetSegment, Tfl.Api.Presentation.Entities",
+          "toid": "0",
+          "lineString": "[[-0.014075,51.47007],[-0.013881,51.469825]]",
+          "sourceSystemId": 0
+        },
+        {
+          "$type": "Tfl.Api.Presentation.Entities.StreetSegment, Tfl.Api.Presentation.Entities",
+          "toid": "0",
+          "lineString": "[[-0.013597,51.469502],[-0.013164,51.468969]]",
+          "sourceSystemId": 0
+        },
+        {
+          "$type": "Tfl.Api.Presentation.Entities.StreetSegment, Tfl.Api.Presentation.Entities",
+          "toid": "0",
+          "lineString": "[[-0.014424,51.470644],[-0.014338,51.470497]]",
+          "sourceSystemId": 0
+        },
+        {
+          "$type": "Tfl.Api.Presentation.Entities.StreetSegment, Tfl.Api.Presentation.Entities",
+          "toid": "0",
+          "lineString": "[[-0.014915,51.471447],[-0.015158,51.471743]]",
+          "sourceSystemId": 0
+        },
+        {
+          "$type": "Tfl.Api.Presentation.Entities.StreetSegment, Tfl.Api.Presentation.Entities",
+          "toid": "0",
+          "lineString": "[[-0.015491,51.472379],[-0.015437,51.47262]]",
+          "sourceSystemId": 0
+        },
+        {
+          "$type": "Tfl.Api.Presentation.Entities.StreetSegment, Tfl.Api.Presentation.Entities",
+          "toid": "0",
+          "lineString": "[[-0.013881,51.469825],[-0.013763,51.469697]]",
+          "sourceSystemId": 0
+        },
+        {
+          "$type": "Tfl.Api.Presentation.Entities.StreetSegment, Tfl.Api.Presentation.Entities",
+          "toid": "0",
+          "lineString": "[[-0.014739,51.4712],[-0.014684,51.471107]]",
+          "sourceSystemId": 0
+        },
+        {
+          "$type": "Tfl.Api.Presentation.Entities.StreetSegment, Tfl.Api.Presentation.Entities",
+          "toid": "0",
+          "lineString": "[[-0.015305,51.473005],[-0.01526,51.473058]]",
+          "sourceSystemId": 0
+        },
+        {
+          "$type": "Tfl.Api.Presentation.Entities.StreetSegment, Tfl.Api.Presentation.Entities",
+          "toid": "0",
+          "lineString": "[[-0.014613,51.470988],[-0.01449,51.47076]]",
+          "sourceSystemId": 0
+        },
+        {
+          "$type": "Tfl.Api.Presentation.Entities.StreetSegment, Tfl.Api.Presentation.Entities",
+          "toid": "0",
+          "lineString": "[[-0.014791,51.471286],[-0.014915,51.471447]]",
+          "sourceSystemId": 0
+        }
+      ],
+      "sourceSystemId": 212894,
+      "sourceSystemKey": "TIMS"
+    }
+  ],
+  "isProvisional": false,
+  "hasClosures": false,
+  "roadDisruptionLines": [],
+  "roadDisruptionImpactAreas": [],
+  "recurringSchedules": []
+}

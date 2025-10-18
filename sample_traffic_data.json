@@ -1,0 +1,164 @@
+{
+    "weather": [
+        {
+            "id": 48,
+            "city": "Reading",
+            "temperature": 284.33,
+            "humidity": 74,
+            "visibility": 10000,
+            "condition": "overcast clouds",
+            "wind_speed": 6.17,
+            "timestamp": "2025-10-18 06:21:56.741690"
+        },
+        {
+            "id": 47,
+            "city": "London",
+            "temperature": 284.5,
+            "humidity": 73,
+            "visibility": 10000,
+            "condition": "overcast clouds",
+            "wind_speed": 2.57,
+            "timestamp": "2025-10-18 06:21:56.167438"
+        },
+        {
+            "id": 46,
+            "city": "Andover",
+            "temperature": 284.11,
+            "humidity": 82,
+            "visibility": 10000,
+            "condition": "overcast clouds",
+            "wind_speed": 4.12,
+            "timestamp": "2025-10-18 06:19:32.449822"
+        },
+        {
+            "id": 45,
+            "city": "London",
+            "temperature": 284.5,
+            "humidity": 73,
+            "visibility": 10000,
+            "condition": "overcast clouds",
+            "wind_speed": 2.57,
+            "timestamp": "2025-10-18 06:19:31.927265"
+        },
+        {
+            "id": 44,
+            "city": "Andover",
+            "temperature": 284.11,
+            "humidity": 82,
+            "visibility": 10000,
+            "condition": "overcast clouds",
+            "wind_speed": 4.12,
+            "timestamp": "2025-10-18 06:07:57.707101"
+        }
+    ],
+    "traffic": [
+        {
+            "id": 23,
+            "origin": "London, UK",
+            "destination": "Reading, UK",
+            "journey_time_min": 72.97,
+            "journey_time_with_traffic_min": 61.73,
+            "delay_min": 0.0,
+            "congestion_percentage": 0.0,
+            "timestamp": "2025-10-18 06:21:57.596034"
+        },
+        {
+            "id": 22,
+            "origin": "London, UK",
+            "destination": "Andover SP11, UK",
+            "journey_time_min": 97.23,
+            "journey_time_with_traffic_min": 86.22,
+            "delay_min": 0.0,
+            "congestion_percentage": 0.0,
+            "timestamp": "2025-10-18 06:19:33.040019"
+        },
+        {
+            "id": 21,
+            "origin": "London, UK",
+            "destination": "Andover SP11, UK",
+            "journey_time_min": 97.23,
+            "journey_time_with_traffic_min": 86.18,
+            "delay_min": 0.0,
+            "congestion_percentage": 0.0,
+            "timestamp": "2025-10-18 06:07:58.261205"
+        },
+        {
+            "id": 20,
+            "origin": "London, UK",
+            "destination": "Andover SP11, UK",
+            "journey_time_min": 101.82,
+            "journey_time_with_traffic_min": 86.87,
+            "delay_min": 0.0,
+            "congestion_percentage": 0.0,
+            "timestamp": "2025-10-18 04:25:54.632630"
+        },
+        {
+            "id": 19,
+            "origin": "London, UK",
+            "destination": "Andover SP11, UK",
+            "journey_time_min": 97.23,
+            "journey_time_with_traffic_min": 97.43,
+            "delay_min": 0.2,
+            "congestion_percentage": 0.21,
+            "timestamp": "2025-10-17 21:10:39.502477"
+        }
+    ],
+    "incidents": [
+        {
+            "id": "TIMS-217916",
+            "severity": "Minimal",
+            "category": "Works",
+            "sub_category": "Utility works",
+            "current_update": "Delays are possible.",
+            "location": "[A218] BUCKHOLD ROAD (SW18 ) (Wandsworth)",
+            "start_date": "2025-10-05 14:24:00",
+            "end_date": "2025-11-23 23:59:00",
+            "timestamp": "2025-10-16 12:34:12.041476"
+        },
+        {
+            "id": "TIMS-217160",
+            "severity": "Minimal",
+            "category": "Works",
+            "sub_category": "Utility works",
+            "current_update": "Delays are possible.",
+            "location": "[A407] HIGH ROAD (NW10 ,NW2 ) (Brent)",
+            "start_date": "2025-09-25 09:30:00",
+            "end_date": "2026-01-23 23:59:00",
+            "timestamp": "2025-10-16 12:34:12.041476"
+        },
+        {
+            "id": "TIMS-213943",
+            "severity": "Minimal",
+            "category": "Works",
+            "sub_category": "Borough works",
+            "current_update": "Delays are possible. ",
+            "location": "[A118] ROMFORD ROAD (E12 ) (Newham,Redbridge)",
+            "start_date": "2025-07-10 10:00:00",
+            "end_date": "2025-12-12 17:00:00",
+            "timestamp": "2025-10-16 12:34:12.041476"
+        },
+        {
+            "id": "TIMS-217769",
+            "severity": "Minimal",
+            "category": "Works",
+            "sub_category": "Utility works",
+            "current_update": "Traffic is flowing well.",
+            "location": "[A4000] HORN LANE (W3 ) (Ealing)",
+            "start_date": "2025-10-06 07:00:00",
+            "end_date": "2025-10-19 18:00:00",
+            "timestamp": "2025-10-16 12:34:12.041476"
+        },
+        {
+            "id": "TIMS-213362",
+            "severity": "Minimal",
+            "category": "Works",
+            "sub_category": "Borough works",
+            "current_update": "Use an alterative route. Delays are possible. ",
+            "location": "[A107] MARE STREET (E8 ,E9 ) (Hackney)",
+            "start_date": "2025-07-23 08:00:00",
+            "end_date": "2026-01-07 17:00:00",
+            "timestamp": "2025-10-16 12:34:12.041476"
+        }
+    ],
+    "source_timestamp": "2025-10-18T06:21:58.862987"
+}

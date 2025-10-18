@@ -1,0 +1,51 @@
+{
+    "distance": {
+        "text": "25.9 km",
+        "value": 25921
+    },
+    "duration": {
+        "text": "40 mins",
+        "value": 2400
+    },
+    "duration_in_traffic": {
+        "text": "1 hour 13 mins",
+        "value": 4369
+    },
+    "end_address": "Heathrow Airport (LHR), Hounslow, UK",
+    "end_location": {
+        "lat": 51.4805539,
+        "lng": -0.4526482999999999
+    },
+    "start_address": "London, UK",
+    "start_location": {
+        "lat": 51.50720579999999,
+        "lng": -0.1275574
+    },
+    "steps": [
+        {
+            "distance": {
+                "text": "34 m",
+                "value": 34
+            },
+            "duration": {
+                "text": "1 min",
+                "value": 12
+            },
+            "end_location": {
+                "lat": 51.5072828,
+                "lng": -0.1279916
+            },
+            "html_instructions": "Head <b>west</b> toward <b>Whitehall</b>/<wbr/><b>A3212</b>",
+            "polyline": {
+                "points": "a_kyHf|W@F?F@F?JAH?HAFCDCDCDAB"
+            },
+            "start_location": {
+                "lat": 51.50720579999999,
+                "lng": -0.1275574
+            },
+            "travel_mode": "DRIVING"
+        }
+    ],
+    "traffic_speed_entry": [],
+    "via_waypoint": []
+}

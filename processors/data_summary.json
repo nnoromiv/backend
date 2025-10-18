@@ -1,0 +1,114 @@
+{
+    "weather_summary": {
+        "avg_temperature": 284.12375,
+        "avg_humidity": 83.375,
+        "avg_wind_speed": 2.29625,
+        "latest_condition": "overcast clouds",
+        "records_count": 8
+    },
+    "weather_trend_daily": [
+        {
+            "timestamp": "2025-10-16",
+            "temperature": 284.12375
+        }
+    ],
+    "traffic_summary": {
+        "avg_delay_min": 1.2742857142857142,
+        "avg_congestion_percentage": 1.5985714285714285,
+        "avg_journey_time_min": 164.16142857142856,
+        "records_count": 7
+    },
+    "traffic_trend_daily": [
+        {
+            "timestamp": "2025-10-16",
+            "congestion_percentage": 1.5985714285714285
+        }
+    ],
+    "incident_summary": {
+        "total_incidents": 91,
+        "unique_categories": 7,
+        "most_common_category": "Works",
+        "severity_distribution": {
+            "Minimal": 76,
+            "Moderate": 14,
+            "Serious": 1
+        }
+    },
+    "weather_traffic_correlation": {
+        "values": {
+            "temperature": {
+                "temperature": 1.0,
+                "humidity": -0.23,
+                "wind_speed": 0.637,
+                "delay_min": -0.0,
+                "congestion_percentage": -0.0
+            },
+            "humidity": {
+                "temperature": -0.23,
+                "humidity": 1.0,
+                "wind_speed": -0.022,
+                "delay_min": -0.0,
+                "congestion_percentage": -0.0
+            },
+            "wind_speed": {
+                "temperature": 0.637,
+                "humidity": -0.022,
+                "wind_speed": 1.0,
+                "delay_min": 0.0,
+                "congestion_percentage": 0.0
+            },
+            "delay_min": {
+                "temperature": -0.0,
+                "humidity": -0.0,
+                "wind_speed": 0.0,
+                "delay_min": 1.0,
+                "congestion_percentage": 1.0
+            },
+            "congestion_percentage": {
+                "temperature": -0.0,
+                "humidity": -0.0,
+                "wind_speed": 0.0,
+                "delay_min": 1.0,
+                "congestion_percentage": 1.0
+            }
+        },
+        "interpretation": {
+            "temperature": {
+                "temperature": "strong",
+                "humidity": "weak",
+                "wind_speed": "moderate",
+                "delay_min": "none",
+                "congestion_percentage": "none"
+            },
+            "humidity": {
+                "temperature": "weak",
+                "humidity": "strong",
+                "wind_speed": "weak",
+                "delay_min": "none",
+                "congestion_percentage": "none"
+            },
+            "wind_speed": {
+                "temperature": "moderate",
+                "humidity": "weak",
+                "wind_speed": "strong",
+                "delay_min": "none",
+                "congestion_percentage": "none"
+            },
+            "delay_min": {
+                "temperature": "none",
+                "humidity": "none",
+                "wind_speed": "none",
+                "delay_min": "strong",
+                "congestion_percentage": "strong"
+            },
+            "congestion_percentage": {
+                "temperature": "none",
+                "humidity": "none",
+                "wind_speed": "none",
+                "delay_min": "strong",
+                "congestion_percentage": "strong"
+            }
+        }
+    },
+    "generated_at": "2025-10-16T11:59:14.960191"
+}
