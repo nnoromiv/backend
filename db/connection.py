@@ -13,7 +13,7 @@ DATABASE_URL = (
     f"@{os.getenv('POSTGRES_HOST')}/{os.getenv('POSTGRES_DB')}"
 )
 
-engine = create_engine(DATABASE_URL)
+engine = create_engine(DATABASE_URL, connect_args={"sslmode": "disable"})  # Cloud SQL uses SSL by default if needed
 
 # Session factory
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)

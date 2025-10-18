@@ -11,13 +11,16 @@ def run_sql_file(path):
         # Split statements and execute one by one
         statements = [stmt.strip() for stmt in sql_file.split(";") if stmt.strip()]
         for stmt in statements:
-            conn.execute(text(stmt))  # wrap in text()
-        conn.commit()  # commit changes
+            conn.execute(text(stmt))
+        conn.commit()
 
 def init_db():
     print("⏳ Creating tables...")
     for sql_file in SQL_FILES:
         sql_path = os.path.join(os.path.dirname(__file__), sql_file)
+        if not os.path.exists(sql_path):
+            print(f"⚠️ SQL file not found: {sql_path}")
+            continue
         run_sql_file(sql_path)
     print("✅ All tables created successfully!")
 
