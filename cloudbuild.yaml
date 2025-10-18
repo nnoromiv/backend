@@ -5,3 +5,7 @@ steps:
     args: ['push', 'europe-west2-docker.pkg.dev/$PROJECT_ID/utis-repo/backend']
 images:
   - 'europe-west2-docker.pkg.dev/$PROJECT_ID/utis-repo/backend'
+options:
+  logging: CLOUD_LOGGING_ONLY   # or NONE if you don't want logs
+  # OR specify a logs bucket explicitly:
+  # logsBucket: gs://your-existing-logs-bucket
