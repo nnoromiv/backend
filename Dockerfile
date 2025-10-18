@@ -23,9 +23,9 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy backend code and SQL files
 COPY . .
-
+    
 # Expose FastAPI port
-EXPOSE 8000
+EXPOSE 8080
 
 # Make entrypoint executable
 RUN chmod +x entrypoint.sh
